@@ -11,6 +11,7 @@ import AdvertisementBanner from "../../public/images/5785216.jpg";
 import { groq } from "next-sanity";
 import { client } from "../../lib/sanity.client";
 import urlFor from "lib/urlFor";
+import Background from '../../public/images/background.jpg'
 
 export default function Home(props:any) {
 
@@ -30,8 +31,9 @@ export default function Home(props:any) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container">
+       
         <div className="header-img">
-          <Image src={HeaderBanner} alt="Header Banner"></Image>
+          <Image src={Background} alt="Header Banner" ></Image>
         </div>
         <div className="image-profile">
           <Image src={ProfileImage} alt="profile image"></Image>
@@ -51,7 +53,7 @@ export default function Home(props:any) {
             {
               props.control[0].offerbanner?
               <div className="card">
-              <Image src={AdvertisementBanner} alt=""></Image>
+              <Image src={urlFor(props.control[0].offerimage).url()} alt="" fill></Image>
             </div>
                 : ""
             }
@@ -63,7 +65,7 @@ export default function Home(props:any) {
             {props.referLinks.map((e:any) => {
               return (
                 <div className="card-link" key={e._id}>
-                  <Image src={urlFor(e.sideimage).url()} alt="refer logo" width={70} height={70}></Image>
+                  <Image src={urlFor(e.sideimage).url()} blurDataURL={urlFor(e.sideimage).url()} alt="refer logo" width={70} height={70}></Image>
                   <div>
                   <a href={e.link} target="_blank" rel="noreferrer">
                     <div>
@@ -89,17 +91,16 @@ export default function Home(props:any) {
               props.control[0].productreview ?
               <div className="product-reviews">
               <p># Product Reviews</p>
-              <div>
-                <ProductReviewCard />
-                <ProductReviewCard />
-                <ProductReviewCard />
-                <ProductReviewCard />
-                <ProductReviewCard />
-                <ProductReviewCard />
-                <ProductReviewCard />
-                <ProductReviewCard />
-                <ProductReviewCard />
-                <ProductReviewCard />
+                  <div>
+                    {
+                      props.reviewedProducts.map((e:any) => {
+                        return (
+                          <ProductReviewCard data={e} key={e._id} />
+                        )
+                      })
+                    }
+                    
+             
               </div>
             </div>
               : ""
@@ -123,14 +124,21 @@ export async function getServerSideProps() {
   *[_type =='visibilitycontroller']
   `;
 
+const query3 = groq`
+*[_type =='reviewedproduct']
+`;
+
+  
   const referLinks: any = await client.fetch(query);
   const control: any = await client.fetch(query2);
-  // console.log(control)
+  const reviewedProducts: any = await client.fetch(query3);
+  console.log(reviewedProducts)
 
   return {
     props: {
       referLinks,
-      control
+      control,
+      reviewedProducts
     }, // will be passed to the page component as props
   };
 }
