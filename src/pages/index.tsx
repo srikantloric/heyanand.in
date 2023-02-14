@@ -65,7 +65,7 @@ export default function Home(props:any) {
                 <div className="card-link" key={e._id}>
                   <Image src={urlFor(e.sideimage).url()} alt="refer logo" width={70} height={70}></Image>
                   <div>
-                  <a href={e.link} target="_blank">
+                  <a href={e.link} target="_blank" rel="noreferrer">
                     <div>
                       <h3>{e.title}</h3>
                       <p>{e.link}</p>
