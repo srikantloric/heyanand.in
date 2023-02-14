@@ -63,10 +63,9 @@ export default function Home(props:any) {
             {props.referLinks.map((e:any) => {
               return (
                 <div className="card-link" key={e._id}>
-                  <img src={urlFor(e.sideimage).url()}></img>
-                  {/* <Image src={urlFor(e.sideimage).url()} alt="refer logo" width={200} height={200}></Image> */}
+                  <Image src={urlFor(e.sideimage).url()} alt="refer logo" width={70} height={70}></Image>
                   <div>
-                  <a href="#">
+                  <a href={e.link}>
                     <div>
                       <h3>{e.title}</h3>
                       <p>{e.link}</p>
@@ -78,13 +77,8 @@ export default function Home(props:any) {
                 </div>
               );
             })}
-
-            {/* <ReferLinkCard />
-            <ReferLinkCard />
-            <ReferLinkCard /> */}
-
             <div className="more-btn">
-              <a href="#">
+              <a>
                 More<i className="fa fa-caret-down" aria-hidden="true"></i>
               </a>
             </div>

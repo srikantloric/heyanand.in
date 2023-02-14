@@ -150,16 +150,16 @@
     cursor: pointer;
   }
 
-  
   .card-link img {
     position: absolute;
     left: 0;
-    height: 70px;
-    width: 70px;
+    height: 75px;
+    width: 75px;
     object-fit: cover;
     border-radius: 2px;
     background-color: #c50132;
-    padding: 15px;
+    /* padding: 5px; */
+
   }
   
   .card-link div{
@@ -182,10 +182,14 @@
     width: 100%;
     height: 100%;
     background-color: transparent;
+    color: var(--color-primary);
   }
   
   .card-link div>a>div{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
   }
   .card-link > div:hover {
     border: 1px solid #e90d44;
@@ -202,7 +206,7 @@
   }
   
   .card-link i {
-    color: var(--color-text-secondary);
+    color: var(--color-primary);
   }
   
   .more-btn {
