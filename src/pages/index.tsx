@@ -33,7 +33,7 @@ export default function Home(props:any) {
       <div className="container">
        
         <div className="header-img">
-          <Image src={Background} alt="Header Banner" height={350} width={350}></Image>
+          <Image src={HeaderBanner} alt="Header Banner" height={350} width={350}></Image>
         </div>
         <div className="image-profile">
           <Image src={ProfileImage} alt="profile image"></Image>
