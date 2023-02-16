@@ -68,7 +68,7 @@ export default function Home(props:any) {
                   <Image src={urlFor(e.sideimage).url()} blurDataURL={urlFor(e.sideimage).url()} alt="refer logo" width={70} height={70}></Image>
                   <div>
                   <a href={e.link} target="_blank" rel="noreferrer">
-                    <div>
+                    <div className="card-link-body">
                       <h3>{e.title}</h3>
                       <p>{e.link}</p>
                     </div>

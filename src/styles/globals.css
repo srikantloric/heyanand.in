@@ -331,3 +331,11 @@
     color: #e90d44;
   }
   
+
+  .card-link-body{
+    text-overflow: ellipsis;
+
+    /* Needed to make it work */
+    overflow: hidden;
+    white-space: nowrap;
+  }
